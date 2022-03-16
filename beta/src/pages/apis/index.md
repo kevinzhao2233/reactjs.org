@@ -6,11 +6,13 @@ title: React APIs
 
 The React package contains all the APIs necessary to define and use [components](/learn/your-first-component).
 
+React包包含定义和使用[组件](/learn/your-first-component)所需的所有API。
+
 </Intro>
 
-## Installation {/*installation*/}
+## 安装 {/*installation*/}
 
-It is available as [`react`](https://www.npmjs.com/package/react) on npm. You can also [add React to the page as a `<script>` tag](/learn/add-react-to-a-website).
+它以 [`react`](https://www.npmjs.com/package/react) 的形式在 npm 上提供。你也可以 [用 `<script>` 标签的形式添加到页面](/learn/add-react-to-a-website).
 
 <PackageImport>
 
@@ -21,16 +23,18 @@ npm install react
 </TerminalBlock>
 
 ```js
-// Importing a specific API:
+// 导入一个特定的 API
 import { useState } from 'react';
 
-// Importing all APIs together:
+// 一起导入所有 API
 import * as React from 'react';
 ```
 
 </PackageImport>
 
 If you use React on the web, you'll also need the same version of [ReactDOM](/api/reactdom).
+
+如果在你需要在浏览器环境使用 React，还需要安装相同版本的 [ReactDOM](/api/reactdom).
 
 ## Exports {/*exports*/}
 
@@ -39,6 +43,8 @@ If you use React on the web, you'll also need the same version of [ReactDOM](/ap
 <YouWillLearnCard title="useState" path="/apis/usestate">
 
 Declares a state variable.
+
+声明一个状态变量。
 
 ```js
 function MyComponent() {
@@ -51,6 +57,8 @@ function MyComponent() {
 <YouWillLearnCard title="useReducer" path="/apis/usereducer">
 
 Declares a state variable managed with a reducer.
+
+声明一个由 reducer 管理的状态变量。
 
 ```js
 function MyComponent() {
@@ -66,6 +74,8 @@ function MyComponent() {
 
 Reads and subscribes to a context.
 
+读取并订阅一个 context。
+
 ```js
 function MyComponent() {
   const theme = useContext(ThemeContext);
@@ -79,6 +89,8 @@ function MyComponent() {
 <YouWillLearnCard title="useRef" path="/apis/useref">
 
 Declares a ref.
+
+声明一个 ref。
 
 ```js
 function MyComponent() {
