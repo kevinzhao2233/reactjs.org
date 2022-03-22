@@ -6,7 +6,7 @@ title: render
 
 `render` renders a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into a browser DOM node.
 
-`render` 将一段[JSX](/learn/writing-markup-with-jsx)(“React node”)渲染到浏览器的 DOM 节点。
+`render` 可以将一段[JSX](/learn/writing-markup-with-jsx)（“React node”）渲染到浏览器的 DOM 节点。
 
 ```js
 render(reactNode, domNode, callback?)
@@ -202,7 +202,7 @@ React will display `<App />` in the `domNode`, and take over managing the DOM in
 
 An app fully built with React will usually only have one `render` call with its root component. A page that uses "sprinkles" of React for parts of the page may have as many `render` calls as needed.
 
-React 会在 `domNode` 中展示 `<App />`，并接管管理其中的 DOM。
+React 会在 `domNode` 中展示 `<App />`，并接管其中的 DOM。
 
 完全使用 React 构建的应用程序通常只在一个根组件上调用 `render`。对于页面的某些部分使用了“零星的” React 页面，可以根据需要调用尽可能多的 `render`。
 
@@ -216,11 +216,11 @@ React 会在 `domNode` 中展示 `<App />`，并接管管理其中的 DOM。
 
 - **optional** `callback`: A function. If passed, React will call it after your component is placed into the DOM.
 
-- `reactNode`: 一个你想要展示的 _React 节点_。这通常是一个 JSX 片段，类似 `<App />`, 当然你也可以传递一个由 [`createElement()`](TODO) 构建的 React 元素，一个字符串，一个数字，`null`，或者 `undefined`。
+- `reactNode`：一个你想要展示的 _React 节点_。这通常是一个 JSX 片段，类似 `<App />`, 当然你也可以传递一个由 [`createElement()`](TODO) 构建的 React 元素，一个字符串，一个数字，`null`，或者 `undefined`。
 
-- `domNode`: 一个 [DOM 元素](https://developer.mozilla.org/en-US/docs/Web/API/Element). React 将在这个 DOM 元素中展示传递来的 `reactNode`。从这一刻起，React 将接管 `domNode` 中的 DOM，并在 React 树发生变化时更新它。
+- `domNode`：一个 [DOM 元素](https://developer.mozilla.org/en-US/docs/Web/API/Element). React 将在这个 DOM 元素中展示传递来的 `reactNode`。从这一刻起，React 将接管 `domNode` 中的 DOM，并在 React 树发生变化时更新它。
 
-- **可选的** `callback`: 一个函数，如果传入，React 会在你的组件被放入 DOM 后调用它。
+- **可选的** `callback`：一个函数，如果传入，React 会在你的组件被放入 DOM 后调用它。
 
 #### 返回 {/* returns */}
 
@@ -234,8 +234,10 @@ React 会在 `domNode` 中展示 `<App />`，并接管管理其中的 DOM。
 
 - If you call `render` on the same `domNode` more than once, React will update the DOM as necessary to reflect the latest JSX you passed. React will decide which parts of the DOM can be reused and which need to be recreated by ["matching it up"](/learn/preserving-and-resetting-state) with the previously rendered tree. Calling `render` on the same `domNode` again is similar to calling the [`set` function](/apis/usestate#setstate) on the root component: React avoids unnecessary DOM updates.
 
-如果在同一个 `domNode` 上多次调用 `render`，React 将根据需要来更新 DOM，以反映你传递的最新的 JSX。React 将决定 DOM 的哪些部分可以重用，哪些需要与之前的渲染树[进行匹配](/learn/preserving-and-resetting-state)。在同一个 `domNode` 上再次调用 `render` 类似于在根组件上调用 [set 函数](/apis/usestate#setstate)：React 避免了不必要的 DOM 更新。
+- 如果在同一个 `domNode` 上多次调用 `render`，React 将根据需要来更新 DOM，以反映你传递的最新的 JSX。React 将决定 DOM 的哪些部分可以重用，哪些需要与之前的渲染树[进行匹配](/learn/preserving-and-resetting-state)。在同一个 `domNode` 上再次调用 `render` 类似于在根组件上调用 [set 函数](/apis/usestate#setstate)：React 避免了不必要的 DOM 更新。
 
 - If your app is fully built with React, you'll likely have only one `render` call in your app. (If you use a framework, it might do this call for you.) When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](TODO) instead of `render`.
+
+- 如果你的应用完全是用React构建的，你的应用程序中可能只需要调用一次 `render`。（如果你使用一个框架，它可能会默认为你做这个调用。）当您想要在 DOM 树的不同部分呈现一部分 JSX，而该部分不是组件的子组件时（例如，modal 或 tooltip），请使用 [`createPortal`](TODO) 而不是 `render`。
 
 ---

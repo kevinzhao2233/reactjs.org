@@ -17,7 +17,7 @@ This blog post covers the following topics:
   - [Ranked chart](#ranked-chart)
   - [Component chart](#component-chart)
   - [Interactions](#interactions)
-- [Troubleshooting](#troubleshooting)
+- [疑难解答](#troubleshooting)
   - [No profiling data has been recorded for the selected root](#no-profiling-data-has-been-recorded-for-the-selected-root)
   - [No timing data to display for the selected commit](#no-timing-data-to-display-for-the-selected-commit)
 - [Deep dive video](#deep-dive-video)

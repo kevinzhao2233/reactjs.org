@@ -12,14 +12,14 @@ const [state, dispatch] = useReducer(reducer, initialArg, init)
 
 </Intro>
 
-- [Usage](#usage)
+- [使用](#usage)
   - [Adding a reducer to a component](#adding-a-reducer-to-a-component)
   - [Writing the reducer function](#writing-the-reducer-function)
   - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
-- [Reference](#reference)
+- [参考](#reference)
   - [`useReducer(reducer, initialArg, init?)`](#usereducer)
   - [`dispatch` functions](#dispatch)
-- [Troubleshooting](#troubleshooting)
+- [疑难解答](#troubleshooting)
   - [I've dispatched an action, but logging gives me the old state value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value)
   - [I've dispatched an action, but the screen doesn't update](#ive-dispatched-an-action-but-the-screen-doesnt-update)
   - [A part of my reducer state becomes undefined after dispatching](#a-part-of-my-reducer-state-becomes-undefined-after-dispatching)
