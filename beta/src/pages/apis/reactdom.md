@@ -12,7 +12,7 @@ ReactDOM 允许你在网页上渲染 React 组件。
 
 Typically, you will use ReactDOM at the top level of your app to display your components. You will either use it directly or a [framework](/learn/start-a-new-react-project#building-with-react-and-a-framework) may do it for you. Most of your components should *not* need to import this module.
 
-通常，你将在应用程序的顶层使用 ReactDOM 来展示组件。您可以直接使用它，也可以使用一个[框架](/learn/start-a-new-react-project#building-with-react-and-a-framework)。大多数组件都*不* 需要导入此模块。
+通常，你将在应用程序的顶层使用 ReactDOM 来展示组件。你可以直接使用它，也可以使用一个[框架](/learn/start-a-new-react-project#building-with-react-and-a-framework)。大多数组件都*不* 需要导入此模块。
 
 ## 安装 {/*installation*/}
 

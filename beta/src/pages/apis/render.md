@@ -224,7 +224,7 @@ React 会在 `domNode` 中展示 `<App />`，并接管其中的 DOM。
 
 #### 返回 {/* returns */}
 
-`render` 通常返回 `null`. 但是，如果您传递的 `reactNode` 是一个_类组件_，那么它将返回该组件的实例。
+`render` 通常返回 `null`. 但是，如果你传递的 `reactNode` 是一个_类组件_，那么它将返回该组件的实例。
 
 #### 注意事项 {/* caveats */}
 
@@ -238,6 +238,6 @@ React 会在 `domNode` 中展示 `<App />`，并接管其中的 DOM。
 
 - If your app is fully built with React, you'll likely have only one `render` call in your app. (If you use a framework, it might do this call for you.) When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](TODO) instead of `render`.
 
-- 如果你的应用完全是用React构建的，你的应用程序中可能只需要调用一次 `render`。（如果你使用一个框架，它可能会默认为你做这个调用。）当您想要在 DOM 树的不同部分呈现一部分 JSX，而该部分不是组件的子组件时（例如，modal 或 tooltip），请使用 [`createPortal`](TODO) 而不是 `render`。
+- 如果你的应用完全是用React构建的，你的应用程序中可能只需要调用一次 `render`。（如果你使用一个框架，它可能会默认为你做这个调用。）当你想要在 DOM 树的不同部分呈现一部分 JSX，而该部分不是组件的子组件时（例如，modal 或 tooltip），请使用 [`createPortal`](TODO) 而不是 `render`。
 
 ---
