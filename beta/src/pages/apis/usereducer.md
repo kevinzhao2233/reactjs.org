@@ -4,7 +4,7 @@ title: useReducer
 
 <Intro>
 
-`useReducer` is a React Hook that lets you add a [reducer](/learn/extracting-state-logic-into-a-reducer) to your component.
+`useReducer` 是一个 React Hook，可以让你在组件添加一个 [reducer](/learn/extracting-state-logic-into-a-reducer).
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialArg, init)
@@ -13,19 +13,19 @@ const [state, dispatch] = useReducer(reducer, initialArg, init)
 </Intro>
 
 - [使用](#usage)
-  - [Adding a reducer to a component](#adding-a-reducer-to-a-component)
-  - [Writing the reducer function](#writing-the-reducer-function)
-  - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
+  - [在组件中添加一个 reducer](#adding-a-reducer-to-a-component)
+  - [编写 reducer function](#writing-the-reducer-function)
+  - [避免重新创建初始化 state](#avoiding-recreating-the-initial-state)
 - [参考](#reference)
   - [`useReducer(reducer, initialArg, init?)`](#usereducer)
   - [`dispatch` functions](#dispatch)
 - [疑难解答](#troubleshooting)
-  - [I've dispatched an action, but logging gives me the old state value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value)
-  - [I've dispatched an action, but the screen doesn't update](#ive-dispatched-an-action-but-the-screen-doesnt-update)
-  - [A part of my reducer state becomes undefined after dispatching](#a-part-of-my-reducer-state-becomes-undefined-after-dispatching)
-  - [My entire reducer state becomes undefined after dispatching](#my-entire-reducer-state-becomes-undefined-after-dispatching)
-  - [I'm getting an error: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
-  - [My reducer or initializer function runs twice](#my-reducer-or-initializer-function-runs-twice)
+  - [我已经 dispatch 了一个 action, 但是日志给我了一个旧的 state](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value)
+  - [我已经 dispatch 了一个 action, 但是屏幕上依然没有更新](#ive-dispatched-an-action-but-the-screen-doesnt-update)
+  - [一部分 reducer 的 state 在 dispatch 之后变成了 undefined](#a-part-of-my-reducer-state-becomes-undefined-after-dispatching)
+  - [整个 reducer 的 state 在 dispatch 之后变成了 undefined](#my-entire-reducer-state-becomes-undefined-after-dispatching)
+  - [我获得一个错误: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
+  - [我的 reducer 或者 initializer function 运行了两次](#my-reducer-or-initializer-function-runs-twice)
 
 ---
 
@@ -877,11 +877,13 @@ export default function TodoList({ username }) {
 
 ---
 
-## Reference {/*reference*/}
+## 参考 {/*reference*/}
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
 Call `useReducer` at the top level of your component to manage its state with a [reducer](/learn/extracting-state-logic-into-a-reducer).
+
+在组件的顶层调用 `useReducer` ，使用 [reducer](/learn/extracting-state-logic-into-a-reducer) 管理状态。
 
 ```js
 import { useReducer } from 'react';
@@ -897,29 +899,40 @@ function MyComponent() {
 
 [See more examples above.](#examples-basic)
 
-#### Parameters {/*parameters*/}
+#### 参数 {/*parameters*/}
 
 * `reducer`: The reducer function that specifies how the state gets updated. It must be pure, should take the state and action as arguments, and should return the next state. State and action can be of any types. 
+* `reducer`：指定 state 更新方式的 reducer 函数。它必须是纯函数，应该将 state 和 action 作为参数，并且应该返回下一个 state。state 和 action 可以是任何类型。
 * `initialArg`: The value from which the initial state is calculated. It can be a value of any type. How the initial state is calculated from it depends on the next `init` argument.
+* `initialArg`：从中计算初始状态的值。它可以是任何类型的值。初始状态的计算方式取决于下一个 `init` 参数。
 * **optional** `init`: The initializer function that specifies how the initial state is calculated. If it's not specified, the initial state is set to `initialArg`. Otherwise, the initial state is set to the result of calling `init(initialArg)`.
+* **可选的** `init`：指定如何计算初始状态的初始化函数。如果未指定，则初始状态设置为 `initialArg`。否则，初始状态将设置为调用  `init(initialArg)` 的结果。
 
-#### Returns {/*returns*/}
+#### 返回值 {/*returns*/}
 
 `useReducer` returns an array with exactly two values:
+
+`useReducer` 返回刚好有两个值的数组：
 
 1. The current state. During the first render, it's set to `init(initialArg)` or `initialArg` (if there's no `init`).
 2. The [`dispatch` function](#dispatch) that lets you update the state to a different value and trigger a re-render.
 
-#### Caveats {/*caveats*/}
+
+1. 当前 state。在第一次渲染时，它被设置为 `init(initialArg)` 或 `initialArg`（如果没有 `init`）
+2. [`dispatch` function](#dispatch)，可以让你将 state 更新为不同的值并触发重新渲染。
+#### 注意事项 {/*caveats*/}
 
 * `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useReducer` 是一个 Hook，所以你**只能在组件顶层调用**它。不能在循环或条件中调用。如果你需要这样，请提取一个新的组件并将 state 移动到新组件。
 * In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities](#my-initializer-or-updater-function-runs-twice). This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect the logic of your component. The result from one of the calls is ignored.
-
+* 在严格模式，React 会**调用两次 recuder 和初始化函数**，这可以[帮助你找到意外情况](#my-initializer-or-updater-function-runs-twice)。仅开发环境，reducer 必须是纯函数，其中一次调用的结果会被忽略。
 ---
 
 ### `dispatch` functions {/*dispatch*/}
 
 The `dispatch` function returned by `useReducer` lets you update the state to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
+
+由 `useReducer` 返回的 `dispatch` 函数允许你将 state 更新为不同的值并触发重新渲染。你需要将 action 作为唯一参数传递给 `dispatch` 函数：
 
 ```js
 const [state, dispatch] = useReducer(reducer, { age: 42 });
@@ -931,37 +944,52 @@ function handleClick() {
 
 React will set the next state to the result of calling the `reducer` function you've provided with the current `state` and the action you've passed to `dispatch`.
 
-#### Parameters {/*dispatch-parameters*/}
+React 会将下一个 state 设置为调用 `reducer` 函数的结果，该函数提供了当前 state 和 传递给 `dispatch` 的 action。
+
+#### 参数 {/*dispatch-parameters*/}
 
 * `action`: The action performed by the user. It can be a value of any type. By convention, an action is usually an object with a `type` property identifying it and, optionally, other properties with additional information.
 
-#### Returns {/*dispatch-returns*/}
+* `action`：用户执行的操作。它可以是任何类型的值。按照惯例，一个 action 通常是一个具有 `type` 属性的对象，该属性用来标识这个 action，还可以有具有附加信息的其他属性。
+
+#### 返回值 {/*dispatch-returns*/}
 
 `dispatch` functions do not have a return value.
 
-#### Caveats {/*setstate-caveats*/}
+`dispatch` 函数没有返回值。
+
+#### 注意事项 {/*setstate-caveats*/}
 
 * The `dispatch` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `dispatch` function, [you will still get the old value](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value) that was on the screen before your call.
 
+* `dispatch` 函数**只能在下次渲染时更新 state**。如果你在调用 `dispatch` 函数之后读取 state，[你任然会得到调用前在屏幕上显示的旧值](#ive-dispatched-an-action-but-logging-gives-me-the-old-state-value)
+
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. React may still need to call your component before ignoring the result, but it shouldn't affect your code.
+
+* 如果您提供的新值与当前 state 相同（由 `Object.js` 比较来确定），React 将跳过重新渲染组件及其子组件。这是一种优化措施。在忽略结果之前，React 可能仍然需要调用你的组件，但它应该不会影响你的代码。
 
 * React [batches state updates](/learn/queueing-a-series-of-state-updates). It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`](/apis/flushsync).
 
+* React 会[批量更新 state](/learn/queueing-a-series-of-state-updates)。它在**所有事件处理程序运行**并调用了他们的 `set` 函数后更新屏幕。这可以防止在单个事件期间触发多次重新渲染。在极少数情况下，你需要强制 React 更早的更新屏幕，例如访问 DOM 时，你可以使用 [`flushSync`](/apis/flushsync)。
+
 ---
 
-## Troubleshooting {/*troubleshooting*/}
+## 疑难解答 {/*troubleshooting*/}
 
-### I've dispatched an action, but logging gives me the old state value {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
+### 我已经 dispatch 了一个 action, 但是日志给我了一个旧的 state {/*ive-dispatched-an-action-but-logging-gives-me-the-old-state-value*/}
 
 Calling the `dispatch` function **does not change state in the running code**:
 
-```js {4,5,8}
+调用 `dispatch` 函数**不能同步改变状态**：
+
+```js {4,5,9}
 function handleClick() {
   console.log(state.age);  // 42
 
   dispatch({ type: 'incremented_age' }); // Request a re-render with 43
   console.log(state.age);  // Still 42!
 
+  // 这里还产生闭包了
   setTimeout(() => {
     console.log(state.age); // Also 42!
   }, 5000);
@@ -970,7 +998,11 @@ function handleClick() {
 
 This is because [states behaves like a snapshot](/learn/state-as-a-snapshot). Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
 
+这是因为[状态的行为类似快照](/learn/state-as-a-snapshot)。更新状态会请求另一个具有新状态值的渲染，但不会影响已在运行的事件处理程序中的 `state` 变量。
+
 If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
+
+如果你需要猜测下一个状态值，你可以通过调用 reducer 手动计算它:
 
 ```js
 const action = { type: 'incremented_age' };
@@ -983,9 +1015,11 @@ console.log(nextState); // { age: 43 }
 
 ---
 
-### I've dispatched an action, but the screen doesn't update {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
+### 我已经 dispatch 了一个 action, 但是屏幕上依然没有更新 {/*ive-dispatched-an-action-but-the-screen-doesnt-update*/}
 
 React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+
+如果下一个状态和上一个状态相等（通过 `Object.is` 比较），那么 React 会忽略更新。这通常发送在直接改变对象或数组 state：
 
 ```js {4-5,9-10}
 function reducer(state, action) {
@@ -1006,6 +1040,8 @@ function reducer(state, action) {
 ```
 
 You mutated an existing `state` object and returned it, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+
+你改变已经存在的 `state` 对象并返回它，所以 React 忽略了更新。要修复它，你需要确保你总是[*替换*对象和数组的状态，而不是*改变*他们](#updating-objects-and-arrays-in-state)：
 
 ```js {4-8,11-15}
 function reducer(state, action) {
@@ -1031,9 +1067,11 @@ function reducer(state, action) {
 
 ---
 
-### A part of my reducer state becomes undefined after dispatching {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
+### 一部分 reducer 的 state 在 dispatch 之后变成了 undefined {/*a-part-of-my-reducer-state-becomes-undefined-after-dispatching*/}
 
 Make sure that every `case` branch **copies all of the existing fields** when returning the new state:
+
+确保每个 `case` 分支在返回新状态时**复制了所有现有的字段**：
 
 ```js {5}
 function reducer(state, action) {
@@ -1049,11 +1087,15 @@ function reducer(state, action) {
 
 Without `...state` above, the returned next state would only contain the `age` field and nothing else.
 
+如果没有 `...state`，则返回的状态只包含 `age` 字段，没有其他任何内容。
+
 ---
 
-### My entire reducer state becomes undefined after dispatching {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
+### 整个 reducer 的 state 在 dispatch 之后变成了 undefined {/*my-entire-reducer-state-becomes-undefined-after-dispatching*/}
 
 If your state unexpectedly becomes `undefined`, you're likely forgetting to `return` state in one of the cases, or your action type doesn't match any of the `case` statements. To find why, throw an error outside the `switch`:
+
+如果状态意外变为 `undefined`，可能在其中一种情况下忘记 `return` state，或者您的 action type 与任何 `case` 语句都不匹配。要找出原因，在 `switch` 外抛出一个错误:
 
 ```js {10}
 function reducer(state, action) {
@@ -1071,11 +1113,15 @@ function reducer(state, action) {
 
 You can also use a static type checker like TypeScript to catch such mistakes.
 
+你也可以使用像 TypeScript 这样的静态类型检查器来捕获这样的错误。
+
 ---
 
-### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+### 我获得一个错误: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
 You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally dispatching an action *during render*, so your component enters a loop: render, dispatch (which causes a render), render, dispatch (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+
+如果出现死循环，则会报这个错，一般是由于指定事件处理程序时的错误造成的:
 
 ```js {1-2}
 // 🚩 Wrong: calls the handler during render
@@ -1090,9 +1136,13 @@ return <button onClick={(e) => handleClick(e)}>Click me</button>
 
 If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `dispatch` function call responsible for the error.
 
+如果您无法找到此错误的原因，请单击控制台中错误旁边的箭头，并查看 JavaScript 堆栈，以找到负责此错误的特定 `dispatch` 函数调用。
+
 ---
 
-### My reducer or initializer function runs twice {/*my-reducer-or-initializer-function-runs-twice*/}
+### 我的 reducer 或者 initializer function 运行了两次 {/*my-reducer-or-initializer-function-runs-twice*/}
+
+就是严格模式才会有的那个骚操作。确保 reducer 函数是纯函数就可以了。
 
 In [Strict Mode](/apis/strictmode), React will call your reducer and initializer functions twice. This shouldn't break your code.
 
